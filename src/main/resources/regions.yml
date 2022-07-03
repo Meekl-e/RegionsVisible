@@ -1,0 +1,13 @@
+
+spawn:
+  world: "world"
+  name: "&6&lТерритория спавна"
+
+__global__|world:
+  name: "&3&lСвободная территория"
+
+__global__|world_nether:
+  name: "&3&lАдская территория"
+
+
+

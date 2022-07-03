@@ -1,0 +1,15 @@
+name: Show_messages
+version: '2.0'
+main: org.meekle.mc.show_messages.Show_messages
+depend: [ WorldGuard, ActionBarAPI ]
+authors: [ Meekle ]
+description: Show messages if player leave or join area
+commands:
+  sm-reload:
+    description: Reload Show Messages
+    usage: /sm-reload
+    aliases: [sm-rl]
+
+
+
+
