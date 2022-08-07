@@ -26,7 +26,7 @@ import java.util.UUID;
 
 public class EventListener implements Listener {
     public static int distance_config = Show_messages.getInstance().getConfig().getInt("region_settings.time_update");
-    public static FileConfiguration config = Show_messages.getInstance().getConfig();
+    public static FileConfiguration config = Show_messages.getSettings().getConfig();
     public static FileConfiguration rgConfig = Show_messages.getRegions().getConfig();
     BukkitScheduler scheduler = Bukkit.getScheduler();
     boolean live = false;
@@ -55,7 +55,7 @@ public class EventListener implements Listener {
     }
     @EventHandler
     public void playerChangeWorld(PlayerChangedWorldEvent e){
-        if (config.getBoolean("region_settings."+e.getPlayer().getWorld().getName()+".enabled")){
+        if (config.getBoolean(e.getPlayer().getWorld().getName()+".enabled")){
             if (!live){
                 live = true;
                 repeatSend(e.getPlayer());
@@ -92,38 +92,38 @@ public class EventListener implements Listener {
         Location loc_p = p.getLocation();
         for(ProtectedRegion i : getRegions(p).values()) {
             if(i.contains(loc_p.getBlockX(), loc_p.getBlockY(), loc_p.getBlockZ())){
-            for (String str : rgConfig.getKeys(false)){
-                if (i.getId().equalsIgnoreCase(str)){
-                    if (rgConfig.getString(str+".world").equalsIgnoreCase(p.getWorld().getName())){
-                        String act = ChatColor.translateAlternateColorCodes('&',rgConfig.getString(str+".name"));
+                if (rgConfig.getString(i.getId() + ".name") !=null && rgConfig.getString(i.getId() + ".world") !=null){
+                    if (!rgConfig.getBoolean(i.getId()+".enabled")){
+                        return;
+                    }
+                    if (rgConfig.getString(i.getId()+".world").equalsIgnoreCase(p.getWorld().getName())){
+                        String act = ChatColor.translateAlternateColorCodes('&',rgConfig.getString(i.getId()+".name"));
                         sendActionBar(p, act);
                         return;
                     }
                 }
-                if (config.getBoolean("region_settings."+p.getWorld().getName()+".CheckHomes")){
+                if (config.getBoolean(p.getWorld().getName()+".CheckHomes")){
                     if (i.getOwners().contains(p.getUniqueId())){
-                        p.sendMessage("owner");
-                        String act = config.getString("region_settings."+p.getWorld().getName()+".OwnerTerritory");
+                        String act = config.getString(p.getWorld().getName()+".OwnerTerritory");
                         if (act != null){
                             sendActionBar(p, ChatColor.translateAlternateColorCodes('&', act));
                             return;
 
                         }
                     }else if (i.getMembers().contains(p.getUniqueId())) {
-                        String act = config.getString("region_settings." + p.getWorld().getName() + ".MemberTerritory");
+                        String act = config.getString( p.getWorld().getName() + ".MemberTerritory");
                         if (act != null) {
                             sendActionBar(p, ChatColor.translateAlternateColorCodes('&', act));
                             return;
                         }
                     } else {
-                        String act = config.getString("region_settings." + p.getWorld().getName() + ".AnotherTerritory");
+                        String act = config.getString( p.getWorld().getName() + ".AnotherTerritory");
                         if (act != null) {
                             sendActionBar(p, ChatColor.translateAlternateColorCodes('&', act));
                             return;
                         }
                     }
                 }
-            }
             }else if (i.getId().equalsIgnoreCase("__global__")){
                 String act = rgConfig.getString("__global__|"+p.getWorld().getName()+".name");
                 if (act != null){

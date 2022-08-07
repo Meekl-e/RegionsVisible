@@ -1,14 +1,20 @@
-name: Show_messages
-version: '2.0'
+name: RegionsVisible
+version: '1.0'
 main: org.meekle.mc.show_messages.Show_messages
 depend: [ WorldGuard, ActionBarAPI ]
 authors: [ Meekle ]
-description: Show messages if player leave or join area
+description: See your, custom and another region!
 commands:
   sm-reload:
-    description: Reload Show Messages
-    usage: /sm-reload
-    aliases: [sm-rl]
+    description: Reload
+    usage: /rv-reload
+    aliases: [rv-rl]
+  sm-add:
+    description: Add region
+    usage: /rv-add <region_name> <name_in_actionBar>
+  sm-remove:
+    description: Remove region
+    usage: /rv-remove <region_name>
 
 
 

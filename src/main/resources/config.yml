@@ -1,38 +1,17 @@
 #PERMISSIONS:
-# show_messages.reload - /sm-reload
+# rv.reload - /rv-reload
+# rv.add - /rv-add
+# rv.remove -  /rv-remove
 
 
 region_settings:
-  time_update: 20 #Тики. 1 секунда=20 тиков
-  #Чем меньше число, тем больше нагрузка на сервер
-  world:
-    enabled: true
-    CheckHomes: true # Для уменьшения нагрузки можно отключить, если домов игроков там  нет
-    OwnerTerritory: "&a&lВладелец этой земли"
-    MemberTerritory: "&a&lУчастник этой земли"
-    AnotherTerritory: "&c&lЧужая территория"
+  time_update: 20 #Ticks
 
-  world_nether:
-    enabled: true
-    CheckHomes: false
-    OwnerTerritory: "&a&lВладелец этой земли ада"
-    MemberTerritory: "&a&lУчастник этой земли ада"
-    AnotherTerritory: "&c&lЧужая территория ада"
-
-  world_the_end:
-    enabled: false
-    CheckHomes: false # Это уже не влияет, если enabled- false
-    OwnerTerritory: "&a&lВладелец этой земли енда"
-    MemberTerritory: "&a&lУчастник этой земли енда"
-    AnotherTerritory: "&c&lЧужая территория енда"
-
-
-
-
-
-
+prefix: "&f[&6&lRegionVisible&r&f]:&r "
 
 messages:
-  NoPermission: "&cНедостаточно прав."
-  Successful_reload_player: "&aУспешная перезагрузка" # Если команда выполнена игроком
-  Successful_reload_console: "Successful reload Show Messages" # Если команда выполнена консолью
+  NoPermission: "&cYou don't have permission."
+  OnlyPlayer: "&cThis command can execute only player"
+  Successful_reload: "&aSuccessful reload"
+  Successful_add: "&fSuccessful add {region} with name&r {name}"
+  Successful_remove: "&fSuccessful remove {region}"

@@ -1,13 +1,23 @@
+#I don't speak English well, so I apologize in advance for any mistakes.
 
-spawn:
-  world: "world"
-  name: "&6&lТерритория спавна"
+# This file only example, so I don't use color codes
 
-__global__|world:
-  name: "&3&lСвободная территория"
+spawn: # name of yours region as a WorldGuard
+  world: "world" # world of the region
+  name: "Territory of spawn" # name in the action bar
 
-__global__|world_nether:
-  name: "&3&lАдская территория"
+# You can remove __global__s regions and plugin will be show only special regions (other regions in file and homes)
+# Or you can set enabled: false in the config and disable all regions
+# BUT if in the config
 
+__global__|world: # __global__ region of world
+  name: "World free region" #name in ActionBar
 
+__global__|world_nether: # __global__ region of world_nether
+  name: "World nether free region" #name in ActionBar
+
+__global__|world_the_end: # __global__ region of world_the_end
+  name: "world the end free region" #name in ActionBar
+
+# When plugin enabling - it searches world and create __global__ region for it
 
